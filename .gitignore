@@ -1,0 +1,50 @@
+# General Ignores (Root)
+node_modules/
+dist/
+.env
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+
+# Angular-Specific Ignores (client/)
+.angular/cache/
+
+# Node.js-Specific Ignores (server/)
+logs/
+uploads/
+
+# Optional: If you use specific IDEs or tools, you might want to add:
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# IntelliJ IDEA
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# macOS
+.DS_Store
+
+# Windows
+# Windows image file caches
+ehthumbs.db
+Thumbs.db
