@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -34,7 +35,12 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }
+            }, 
+            "errorMap": {
+                "baseHref": "/MEAN-Stack/",
+                "404": "/404.html"
+              }
+          
           },
           "configurations": {
             "production": {
@@ -80,7 +86,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
