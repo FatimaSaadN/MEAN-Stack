@@ -35,11 +35,7 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }, 
-            "errorMap": {
-                "baseHref": "/MEAN-Stack/",
-                "404": "/404.html"
-              }
+            }
           
           },
           "configurations": {
