@@ -1,7 +1,13 @@
 {
   "routes": [
-    "/home",
-    "/login",
-    "/register"
+    "/en/home",
+    "/en/login",
+    "/en/register",
+    "/es/home",
+    "/es/login",
+    "/es/register",
+    "/fr/home",
+    "/fr/login",
+    "/fr/register"
   ]
 }

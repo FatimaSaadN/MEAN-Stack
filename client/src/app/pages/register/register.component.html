@@ -1,4 +1,4 @@
-<div class="lg: w-3/6 mt-10 p-10 shadow-lg mx-auto rounded-lg bg-gradient-to-b from-[#f3e7f2] to-[#a876a7] mb-10">
+<div class="lg: w-4/5 mt-10 p-10 shadow-lg mx-auto rounded-lg bg-gradient-to-b from-[#f3e7f2] to-[#a876a7] mb-10">
     <h3 class="text-3xl text-center font-semibold py-5 text-purple-950">Register</h3>
     <form [formGroup]="registerForm" class="flex flex-col">
         <div class="flex flex-col mt-4 mb-1">
@@ -6,8 +6,8 @@
             <span *ngIf="registerForm.hasError('required', 'firstName') && registerForm.controls['firstName'].dirty" class="text-purple-950">First Name is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
-            <input formControlName="lastName" class="p-2 border-gray-300 rounded" type="text" placeholder="LastName">
-            <span *ngIf="registerForm.hasError('required', 'lastName') && registerForm.controls['lastName'].dirty" class="text-purple-950">Last Name is Required</span>
+            <input i18n formControlName="lastName" class="p-2 border-gray-300 rounded" type="text" placeholder="LastName">
+            <span i18n *ngIf="registerForm.hasError('required', 'lastName') && registerForm.controls['lastName'].dirty" class="text-purple-950">Last Name is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="email" class="p-2 border-gray-300 rounded" type="text" placeholder="Email">
