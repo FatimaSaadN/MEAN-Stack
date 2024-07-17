@@ -1,51 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Home Page</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: linear-gradient(to bottom right, #EFDBEE, #E3BEE1); /* Gradient background */
-      color: #65365C; /* Main text color */
-    }
-
-    header {
-      background-color: #FAF5FA; /* Lightest pink */
-      padding: 1rem;
-      text-align: center;
-    }
-
-    h1 {
-      margin-bottom: 0;
-    }
-
-    .container {
-      max-width: w-1/2;
-      margin: 2rem auto;
-      padding: 5rem;
-      background-color: rgb(233, 220, 234);
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #904682; /* Darker pink */
-    }
-
-    p {
-      line-height: 1.6;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Welcome to Our Website</h1>
+<body class="font-sans bg-gradient-to-br from-[#EFDBEE] to-[#E3BEE1] text-[#65365C]">
+  <header class="bg-[#FAF5FA] p-6 text-center shadow-md">
+    <h1 class="text-2xl font-bold">Settings</h1>
   </header>
 
-  <div class="container">
-    <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
-    
-    <h2>Proin Gravida Nibh Vel</h2>
-    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
+  <div class="max-w-2xl mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-[#904682] mb-6">Update Profile</h2>
+    <form>
+      <div class="mb-4">
+        <label for="firstName" class="block text-[#904682] font-bold mb-2">First Name</label>
+        <input type="text" id="firstName" placeholder="Enter your first name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+      <div class="mb-4">
+        <label for="lastName" class="block text-[#904682] font-bold mb-2">Last Name</label>
+        <input type="text" id="lastName" placeholder="Enter your last name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-[#904682] font-bold mb-2">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+      
+      <div class="flex justify-center">
+        <button type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">Update Profile</button>
+      </div>
+    </form>
+
+    <h2 class="text-xl font-semibold text-[#904682] mt-8 mb-6">Account Actions</h2>
+    <div class="flex flex-col items-center">
+      <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 mb-4" onclick="logout()">Logout</button>
+      <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500" onclick="deleteAccount()">Delete Account</button>
+    </div>
   </div>
+
 </body>
+</html>

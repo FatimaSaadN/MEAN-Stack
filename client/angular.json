@@ -4,13 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "client": {
-      "i18n": {
-        "sourceLocale": "en",
-        "locales": {
-          "fr": "src/locale/messages.fr.xlf", 
-          "es": "src/locale/messages.es.xlf"
-        }
-      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -20,8 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["fr", "es"],
-            "outputPath": "dist/client",
+            "outputPath": "docs/client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -43,8 +35,7 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }
-          
+            }         
           },
           "configurations": {
             "production": {

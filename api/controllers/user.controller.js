@@ -12,6 +12,34 @@ export const getAllUsers = async (req, res, next) => {
     }
 
 }
+export const updateUser = async (req, res, next) => {
+    try {
+        // Log the ID being used
+        console.log("Updating user with ID:", req.query.id); 
+
+        // Find the user by ID
+        const user = await User.findById(req.query.id);
+        if (user) {
+            console.log("User found, updating data...");
+
+            // Update the user data
+            const newData = await User.findByIdAndUpdate(
+                req.query.id,
+                { $set: req.body },
+                { new: true }
+            );
+
+            console.log("User updated successfully:", newData);
+            return res.send("User Updated!");
+        } else {
+            return res.status(400).send("Bad Request - User not found!");
+        }
+    } catch (error) {
+        console.error("Error updating user:", error); // Log the error
+        return res.status(500).send("Internal Server Error!");
+    }
+};
+
 //export getUserById using const
 export const getUserById = async (req, res, next) => {
     try {
