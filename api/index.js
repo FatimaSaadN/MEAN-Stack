@@ -89,5 +89,6 @@ app.use((obj, req, res, next) => {
 app.listen(8800, ()=>{
     connectMongoDB();
     console.log('Server conected to backend');
+    console.log("Listening on PORT 8800")
 });
 

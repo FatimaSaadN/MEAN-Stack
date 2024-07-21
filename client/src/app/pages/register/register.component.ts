@@ -4,41 +4,36 @@ import { CommonModule } from '@angular/common';
 import { confirmPasswordValidator } from '../../../app/validators/confirm-password.validator';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-
+import { RegisterHeaderComponent } from "../../components/register-header/register-header.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RegisterHeaderComponent],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'] // Ensure 'styleUrls' is plural
 })
-export default class RegisterComponent implements OnInit {
-  
+export class RegisterComponent implements OnInit {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
-  //register form property 
-  registerForm !: FormGroup;
   
+  registerForm !: FormGroup;
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     }, 
     {
-      validator: confirmPasswordValidator('password', 'confirmPassword')
-    }
-  
-  );
+      validators: confirmPasswordValidator('password', 'confirmPassword')
+    });
   }
 
-  //register method
   register() {
     this.authService.registerService(this.registerForm.value).subscribe({
       next: (res) => {
@@ -49,7 +44,6 @@ export default class RegisterComponent implements OnInit {
       error: (err) => {
         console.log(err);
       }
-    })
+    });
   }
-
 }

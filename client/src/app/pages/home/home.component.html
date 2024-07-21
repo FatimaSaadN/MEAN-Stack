@@ -1,3 +1,4 @@
+<app-home-header></app-home-header>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +33,31 @@
       </div>
     </form>
 
+    <h2 class="text-xl font-semibold text-[#904682] mt-8 mb-6">Change Password</h2>
+    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+      <div class="mb-4">
+        <label for="currentPassword" class="block text-[#904682] font-bold mb-2">Current Password</label>
+        <input type="password" id="currentPassword" formControlName="currentPassword" placeholder="Enter your current password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+      <div class="mb-4">
+        <label for="newPassword" class="block text-[#904682] font-bold mb-2">New Password</label>
+        <input type="password" id="newPassword" formControlName="newPassword" placeholder="Enter your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+      <div class="mb-4">
+        <label for="confirmPassword" class="block text-[#904682] font-bold mb-2">Confirm New Password</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+      </div>
+
+      <div class="flex justify-center">
+        <button type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="changePasswordForm.invalid" (click)="changePassword()">Change Password</button>
+      </div>
+    </form>
+
     <h2 class="text-xl font-semibold text-[#904682] mt-8 mb-6">Account Actions</h2>
     <div class="flex flex-col items-center">
       <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 mb-4" onclick="logout()">Logout</button>
       <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500" onclick="deleteAccount()">Delete Account</button>
     </div>
   </div>
-
 </body>
 </html>

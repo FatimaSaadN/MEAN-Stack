@@ -49,6 +49,7 @@ export const registerAdmin = async (req, res, next)=>{
 
 //login
 export const login = async (req, res, next)=>{
+    console.log("ibbbiiii")
     try{
         const user = await User.findOne({email: req.body.email})
         .populate("roles", "role");
@@ -65,14 +66,20 @@ export const login = async (req, res, next)=>{
         const token = jwt.sign({id: user._id, isAdmin: user.isAdmin, roles: roles}, process.env.JWT_SECRET);
         //return next(CreateSuccess(200, "User Logged In!!"))
         //send token in cookie
-        res.cookie("access_token", token, {httpOnly: true}).status(200).json({
+        res.cookie("access_token", token, { httpOnly: true }).status(200).json({
             success: 200,
             message: "Login Success",
-            data: user
+            data: { token, userId: user._id }  // Include user ID in the response
         });
     }
     catch(error){
         return res.status(500).send("Internal Server Error!")
     }
 
+}
+
+//logout token
+export const logout = async (req, res, next)=>{
+    res.clearCookie("access_token");
+    return next(CreateSuccess(200, "User Logged Out!!"))
 }

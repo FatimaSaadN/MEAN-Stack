@@ -1,21 +1,23 @@
-<div class="lg: w-3/6 mt-10 p-10 shadow-lg mx-auto rounded-lg bg-gradient-to-b from-[#f3e7f2] to-[#a876a7] mb-10">
-  <h3 class="text-3xl text-center font-semibold py-5 text-purple-950">Login</h3>
-  <form [formGroup]="loginForm" class="flex flex-col">
-      <div class="flex flex-col mt-4 mb-1">
-          <input formControlName="email" class="p-2 border-gray-300 rounded" type="text" placeholder="Email">
-          <span *ngIf="loginForm.hasError('required', 'email') && loginForm.controls['email'].dirty"  class="text-purple-950">Email is Required</span>
-          <span *ngIf="loginForm.hasError('email', 'email')" class="text-purple-950">Email is Invalid</span>
-      </div>
-      
-      <div class="flex flex-col mt-4 mb-1">
-          <input formControlName="password" class="p-2 border-gray-300 rounded" type="password" placeholder="Password">
-          <span *ngIf="loginForm.hasError('required', 'password') && loginForm.controls['password'].dirty"  class="text-purple-950">Password is Required</span>
-      </div>
-      
-      <button [disabled]="loginForm.invalid" [class.disabled]="loginForm.invalid" (click)="login()" class="bg-purple-950 p-2 rounded mt-3 text-white">Submit</button>
-  </form>
-  <div class="flex justify-center mt-5">
-      <span class="text-purple-950">Already have an account?</span>
-      <a class="text-purple-950 ml-2 cursor-pointer">Register Here</a>
+<app-header></app-header>
+<div class="lg: w-4/5  mt-10 p-10 shadow-lg mx-auto rounded-lg bg-gradient-to-b from-[#f3e7f2] to-[#a876a7] mb-10">
+    <h3 class="text-3xl text-center font-semibold py-5 text-purple-950">Login</h3>
+    <form [formGroup]="loginForm" class="flex flex-col">
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="email" class="p-2 border-gray-300 rounded" type="text" placeholder="Email">
+            <span *ngIf="loginForm.hasError('required', 'email') && loginForm.controls['email'].dirty"  class="text-purple-950">Email is Required</span>
+            <span *ngIf="loginForm.hasError('email', 'email')" class="text-purple-950">Email is Invalid</span>
+        </div>
+        
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="password" class="p-2 border-gray-300 rounded" type="password" placeholder="Password">
+            <span *ngIf="loginForm.hasError('required', 'password') && loginForm.controls['password'].dirty"  class="text-purple-950">Password is Required</span>
+        </div>
+        
+        <button [disabled]="loginForm.invalid" [class.disabled]="loginForm.invalid" (click)="login()" class="bg-purple-950 p-2 rounded mt-3 text-white">Submit</button>
+    </form>
+    <div class="flex justify-center mt-5">
+        <span class="text-purple-950">Don't have an account?&nbsp;</span>
+        <a href="/register" class="text-purple-900 hover:text-purple-900">Register Here</a>
+    </div>
   </div>
-</div>
+<app-popup [showPopup]="showPopup" [message]="popupMessage"></app-popup>
