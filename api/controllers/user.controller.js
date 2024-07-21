@@ -18,12 +18,12 @@ export const updateUser = async (req, res, next) => {
     try {
 
         // Find the user by ID
-        const user = await User.findById(req.query.id);
+        const user = await User.findById(req.params.id);
         if (user) {
 
             // Update the user data
             const newData = await User.findByIdAndUpdate(
-                req.query.id,
+                req.params.id,
                 { $set: req.body },
                 { new: true }
             );
@@ -43,13 +43,13 @@ export const updateUser = async (req, res, next) => {
 //     try {
 
 //         // Find the user by ID
-//         const user = await User.findById(req.query.id);
+//         const user = await User.findById(req.params.id);
 //         if (user) {
 //             // Change the password
 //             const salt = await bcrypt.genSalt(10);
 //             const hashedPassword = await bcrypt.hash(req.body.password, salt);
 //             const newData = await User.findByIdAndUpdate(
-//                 req.query.id,
+//                 req.params.id,
 //                 { $set: { password: hashedPassword } },
 //                 { new: true }
 //             );
