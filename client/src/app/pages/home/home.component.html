@@ -4,59 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings Page</title>
+  <title i18n>Settings Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans bg-gradient-to-br from-[#EFDBEE] to-[#E3BEE1] text-[#65365C]">
   <header class="bg-[#FAF5FA] p-6 text-center shadow-md">
-    <h1 class="text-2xl font-bold">Settings</h1>
+    <h1 i18n class="text-2xl font-bold">Settings</h1>
   </header>
 
   <div class="max-w-2xl mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold text-[#904682] mb-6">Update Profile</h2>
+    <h2 i18n class="text-xl font-semibold text-[#904682] mb-6">Update Profile</h2>
     <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
       <div class="mb-4">
-        <label for="firstName" class="block text-[#904682] font-bold mb-2">First Name</label>
+        <label i18n for="firstName" class="block text-[#904682] font-bold mb-2">First Name</label>
         <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your first name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
       <div class="mb-4">
-        <label for="lastName" class="block text-[#904682] font-bold mb-2">Last Name</label>
+        <label i18n for="lastName" class="block text-[#904682] font-bold mb-2">Last Name</label>
         <input type="text" id="lastName" formControlName="lastName" placeholder="Enter your last name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
       <div class="mb-4">
-        <label for="email" class="block text-[#904682] font-bold mb-2">Email</label>
+        <label i18n for="email" class="block text-[#904682] font-bold mb-2">Email</label>
         <input type="email" id="email" formControlName="email" placeholder="Enter your email" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
       
       <div class="flex justify-center">
-        <button type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="updateUserForm.invalid">Update Profile</button>
+        <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="updateUserForm.invalid">Update Profile</button>
       </div>
     </form>
-    <h2 class="text-xl font-semibold text-[#904682] mt-8 mb-6">Change Password</h2>
+    <h2 i18n class="text-xl font-semibold text-[#904682] mt-8 mb-6">Change Password</h2>
     <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
       <div class="mb-4">
-        <label for="currentPassword" class="block text-[#904682] font-bold mb-2">Current Password</label>
+        <label i18n for="currentPassword" class="block text-[#904682] font-bold mb-2">Current Password</label>
         <input type="password" id="currentPassword" formControlName="currentPassword" placeholder="Enter your current password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
       <div class="mb-4">
-        <label for="newPassword" class="block text-[#904682] font-bold mb-2">New Password</label>
+        <label i18n for="newPassword" class="block text-[#904682] font-bold mb-2">New Password</label>
         <input type="password" id="newPassword" formControlName="newPassword" placeholder="Enter your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
       <div class="mb-4">
-        <label for="confirmPassword" class="block text-[#904682] font-bold mb-2">Confirm New Password</label>
+        <label i18n for="confirmPassword" class="block text-[#904682] font-bold mb-2">Confirm New Password</label>
         <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
       </div>
 
       <div class="flex justify-center">
-        <button type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="changePasswordForm.invalid" (click)="changePassword()">Change Password</button>
+        <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="changePasswordForm.invalid" (click)="changePassword()">Change Password</button>
       </div>
     </form>
 
-    <h2 class="text-xl font-semibold text-[#904682] mt-8 mb-6">Account Actions</h2>
-    <div class="flex flex-col items-center">
-      <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 mb-4" onclick="logout()">Logout</button>
-      <button class="bg-purple-950 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500" onclick="deleteAccount()">Delete Account</button>
-    </div>
+    
   </div>
 </body>
 </html>

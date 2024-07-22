@@ -4,34 +4,34 @@
     <form [formGroup]="registerForm" class="flex flex-col">
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="firstName" class="p-2 border-gray-300 rounded" type="text" placeholder="FirstName">
-            <span *ngIf="registerForm.hasError('required', 'firstName') && registerForm.controls['firstName'].dirty" class="text-purple-950">First Name is Required</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'firstName') && registerForm.controls['firstName'].dirty" class="text-purple-950">First Name is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="lastName" class="p-2 border-gray-300 rounded" type="text" placeholder="LastName">
-            <span *ngIf="registerForm.hasError('required', 'lastName') && registerForm.controls['lastName'].dirty" class="text-purple-950">Last Name is Required</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'lastName') && registerForm.controls['lastName'].dirty" class="text-purple-950">Last Name is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="email" class="p-2 border-gray-300 rounded" type="text" placeholder="Email">
-            <span *ngIf="registerForm.hasError('required', 'email') && registerForm.controls['email'].dirty"  class="text-purple-950">Email is Required</span>
-            <span *ngIf="registerForm.hasError('email', 'email')" class="text-purple-950">Email is Invalid</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'email') && registerForm.controls['email'].dirty"  class="text-purple-950">Email is Required</span>
+            <span i18n *ngIf="registerForm.hasError('email', 'email')" class="text-purple-950">Email is Invalid</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="username" class="p-2 border-gray-300 rounded" type="text" placeholder="Username">
-            <span *ngIf="registerForm.hasError('required', 'username') && registerForm.controls['username'].dirty"  class="text-purple-950">Username is Required</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'username') && registerForm.controls['username'].dirty"  class="text-purple-950">Username is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="password" class="p-2 border-gray-300 rounded" type="password" placeholder="Password">
-            <span *ngIf="registerForm.hasError('required', 'password') && registerForm.controls['password'].dirty"  class="text-purple-950">Password is Required</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'password') && registerForm.controls['password'].dirty"  class="text-purple-950">Password is Required</span>
         </div>
         <div class="flex flex-col mt-4 mb-1">
             <input formControlName="confirmPassword" class="p-2 border-gray-300 rounded" type="password" placeholder="Confirm Password">
-            <span *ngIf="registerForm.hasError('required', 'confirmPassword') && registerForm.controls['confirmPassword'].dirty"  class="text-purple-950">Confirm Password is Required</span>
-            <span *ngIf="registerForm.hasError('confirmPasswordValidator', 'confirmPassword')"  class="text-purple-950">Password didn't match</span>
+            <span i18n *ngIf="registerForm.hasError('required', 'confirmPassword') && registerForm.controls['confirmPassword'].dirty"  class="text-purple-950">Confirm Password is Required</span>
+            <span i18n *ngIf="registerForm.hasError('confirmPasswordValidator', 'confirmPassword')"  class="text-purple-950">Password didn't match</span>
         </div>
-        <button [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" (click)="register()" class="bg-purple-950 p-2 rounded mt-3 text-white">Submit</button>
+        <button i18n [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" (click)="register()" class="bg-purple-950 p-2 rounded mt-3 text-white">Submit</button>
     </form>
     <div class="flex justify-center mt-5">
-        <span class="text-purple-950">Already have an account?&nbsp;</span>
-        <a href="/login" class="text-purple-900 hover:text-purple-900">Login Here</a>
+        <span i18n class="text-purple-950">Already have an account?&nbsp;</span>
+        <a i18n href="/login" class="text-purple-900 hover:text-purple-900">Login Here</a>
     </div>
 </div>
