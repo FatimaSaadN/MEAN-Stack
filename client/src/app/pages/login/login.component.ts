@@ -16,7 +16,7 @@ import { HeaderComponent } from "../../components/header/header.component";
   // Add PopupComponent here
 })
 export class LoginComponent implements OnInit {
-  
+
   loginForm !: FormGroup;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -43,6 +43,7 @@ login() {
         localStorage.setItem('token', res.token);
         console.log("ID: ", res.data.userId)
         localStorage.setItem('userId', res.data.userId);  // Store user ID in local storage
+        localStorage.setItem('user', JSON.stringify(res.data.user));
 
         this.popupMessage = 'Login Successful!';
         this.showPopup = true;

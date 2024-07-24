@@ -35,6 +35,15 @@ export class HomeComponent {
     });
   }
 
+  ngOnInit(): void {
+    const userData = JSON.parse(localStorage.getItem('user') || '{}');
+    this.updateUserForm.patchValue({
+      firstName: userData.firstName || '',
+      lastName: userData.lastName || '',
+      email: userData.email || ''
+    });
+  }
+
   searchUsers() {
     if (this.searchQuery.length > 2) { // Start searching after 3 characters
       this.userService.searchUsers(this.searchQuery).subscribe(

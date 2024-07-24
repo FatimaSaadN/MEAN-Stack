@@ -69,7 +69,7 @@ export const login = async (req, res, next)=>{
         res.cookie("access_token", token, { httpOnly: true }).status(200).json({
             success: 200,
             message: "Login Success",
-            data: { token, userId: user._id }  // Include user ID in the response
+            data: { token, userId: user._id, user: user }  // Include user ID in the response
         });
     }
     catch(error){
