@@ -12,47 +12,64 @@
     <h1 i18n class="text-2xl font-bold">Settings</h1>
   </header>
 
-  <div class="max-w-2xl mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
-    <h2 i18n class="text-xl font-semibold text-[#904682] mb-6">Update Profile</h2>
-    <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
-      <div class="mb-4">
-        <label i18n for="firstName" class="block text-[#904682] font-bold mb-2">First Name</label>
-        <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your first name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-      <div class="mb-4">
-        <label i18n for="lastName" class="block text-[#904682] font-bold mb-2">Last Name</label>
-        <input type="text" id="lastName" formControlName="lastName" placeholder="Enter your last name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-      <div class="mb-4">
-        <label i18n for="email" class="block text-[#904682] font-bold mb-2">Email</label>
-        <input type="email" id="email" formControlName="email" placeholder="Enter your email" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-      
-      <div class="flex justify-center">
-        <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="updateUserForm.invalid">Update Profile</button>
-      </div>
-    </form>
-    <h2 i18n class="text-xl font-semibold text-[#904682] mt-8 mb-6">Change Password</h2>
-    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
-      <div class="mb-4">
-        <label i18n for="currentPassword" class="block text-[#904682] font-bold mb-2">Current Password</label>
-        <input type="password" id="currentPassword" formControlName="currentPassword" placeholder="Enter your current password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-      <div class="mb-4">
-        <label i18n for="newPassword" class="block text-[#904682] font-bold mb-2">New Password</label>
-        <input type="password" id="newPassword" formControlName="newPassword" placeholder="Enter your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-      <div class="mb-4">
-        <label i18n for="confirmPassword" class="block text-[#904682] font-bold mb-2">Confirm New Password</label>
-        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
-      </div>
-
-      <div class="flex justify-center">
-        <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="changePasswordForm.invalid" (click)="changePassword()">Change Password</button>
-      </div>
-    </form>
-
-    
+  <!-- Search Bar -->
+  <div class="max-w-2xl mx-auto my-8 p-4 bg-white rounded-lg shadow-md">
+    <div class="relative">
+      <input type="text" placeholder="Search by first or last name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#904682]" [(ngModel)]="searchQuery" (input)="searchUsers()">
+      <svg class="absolute top-3 right-3 h-5 w-5 text-[#904682]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l5 5m-5-5a7 7 0 11-10-10 7 7 0 0110 10z" /></svg>
+    </div>
   </div>
+  <!-- Search Results -->
+  <div *ngIf="searchResults.length > 0; else defaultContent" class="max-w-2xl mx-auto my-8 p-4 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-[#904682] mb-6">Search Results</h2>
+    <div *ngFor="let user of searchResults" class="p-4 mb-4 border rounded-lg bg-[#FAF5FA]">
+      <h3 class="text-lg font-bold">{{ user.firstName }} {{ user.lastName }}</h3>
+      <p class="text-sm text-[#904682]"><strong>Username:</strong> {{ user.username }}</p>
+      <p class="text-sm text-[#904682]"><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+  </div>
+  <!-- Default Content -->
+  <ng-template #defaultContent>
+    <div class="max-w-2xl mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
+      <h2 i18n class="text-xl font-semibold text-[#904682] mb-6">Update Profile</h2>
+      <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+        <div class="mb-4">
+          <label i18n for="firstName" class="block text-[#904682] font-bold mb-2">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your first name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+        <div class="mb-4">
+          <label i18n for="lastName" class="block text-[#904682] font-bold mb-2">Last Name</label>
+          <input type="text" id="lastName" formControlName="lastName" placeholder="Enter your last name" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+        <div class="mb-4">
+          <label i18n for="email" class="block text-[#904682] font-bold mb-2">Email</label>
+          <input type="email" id="email" formControlName="email" placeholder="Enter your email" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+
+        <div class="flex justify-center">
+          <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="updateUserForm.invalid">Update Profile</button>
+        </div>
+      </form>
+      <h2 i18n class="text-xl font-semibold text-[#904682] mt-8 mb-6">Change Password</h2>
+      <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+        <div class="mb-4">
+          <label i18n for="currentPassword" class="block text-[#904682] font-bold mb-2">Current Password</label>
+          <input type="password" id="currentPassword" formControlName="currentPassword" placeholder="Enter your current password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+        <div class="mb-4">
+          <label i18n for="newPassword" class="block text-[#904682] font-bold mb-2">New Password</label>
+          <input type="password" id="newPassword" formControlName="newPassword" placeholder="Enter your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+        <div class="mb-4">
+          <label i18n for="confirmPassword" class="block text-[#904682] font-bold mb-2">Confirm New Password</label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#904682]">
+        </div>
+
+        <div class="flex justify-center">
+          <button i18n type="submit" class="bg-[#BF75B7] hover:bg-[#AF64A3] text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#904682]" [disabled]="changePasswordForm.invalid" (click)="changePassword()">Change Password</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 </body>
 </html>

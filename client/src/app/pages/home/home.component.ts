@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { HomeHeaderComponent } from "../../components/home-header/home-header.component";
 import { AuthService } from '../../services/auth.service'; // Make sure you have AuthService implemented to handle API calls
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import {SearchService} from "../../services/search.service";
+import {CommonModule} from "@angular/common";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HomeHeaderComponent, ReactiveFormsModule],
+  imports: [CommonModule, HomeHeaderComponent, ReactiveFormsModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -16,8 +18,10 @@ export class HomeComponent {
   changePasswordForm: FormGroup;
 
   updateUserForm : FormGroup;
+  searchQuery: string = ''; // Add searchQuery property
+  searchResults: any[] = []; // Add searchResults property
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: SearchService, private router: Router) { // Inject UserService
     this.changePasswordForm = this.fb.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -30,7 +34,23 @@ export class HomeComponent {
       email: ['', [Validators.required, Validators.email]],
     });
   }
-  
+
+  searchUsers() {
+    if (this.searchQuery.length > 2) { // Start searching after 3 characters
+      this.userService.searchUsers(this.searchQuery).subscribe(
+        response => {
+          this.searchResults = response.data;
+          console.log(this.searchResults); // Log the search results
+        },
+        error => {
+          console.error('Error searching users', error);
+        }
+      );
+    } else {
+      this.searchResults = []; // Clear search results if query is too short
+    }
+  }
+
   changePassword() {
     console.log("Inside changing password");
     if (this.changePasswordForm.valid) {
@@ -49,7 +69,7 @@ export class HomeComponent {
       this.authService.changePasswordService(userId, this.changePasswordForm.value).subscribe(
         response => {
           console.log('Password changed successfully', response);
-          this.router.navigate(['/login']); 
+          this.router.navigate(['/login']);
         },
         error => {
           console.error('Error changing password', error);
@@ -79,7 +99,7 @@ updateUser() {
     this.authService.updateUserService(userId, userData).subscribe(
       response => {
         console.log('User updated successfully', response);
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/home']);
       },
       error => {
         console.error('Error updating user', error);
