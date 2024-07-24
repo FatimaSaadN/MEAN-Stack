@@ -10,34 +10,45 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { createError } from "../utils/error.js";
 import { CreateSuccess } from "../utils/success.js";
+const SALT = 'hardcoded_salt'; // Ensure this matches the one in the schema
 
-export const register = async (req, res, next)=>{
-    //return next(createError(500, "My Error!"));
-	const role = await Role.find({role: 'User'});
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-        roles: role
-    });
-    await newUser.save();
-    res.status(201).json(CreateSuccess("User created successfully"));
-    //return next(CreateSuccess(200, "User Registered!"))
+export const register = async (req, res, next) => {
+    try {
+        const role = await Role.find({ role: 'User' });
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const encryptedUsername = await bcrypt.hash(req.body.username + SALT, 10);
+
+        const newUser = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            username: req.body.username,
+            encryptedUsername: encryptedUsername,
+            email: req.body.email,
+            password: hashedPassword,
+            roles: role
+        });
+
+        await newUser.save();
+        res.status(201).json(CreateSuccess("User created successfully"));
+    } catch (error) {
+        return next(createError(500, "Internal Server Error: " + error.toString()));
+    }
 }
+
 
 export const registerAdmin = async (req, res, next)=>{
     //return next(createError(500, "My Error!"));
 	const role = await Role.find({});
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const encryptedUsername = await bcrypt.hash(req.body.username + SALT, 10);
+
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
+        encryptedUsername: encryptedUsername,
         email: req.body.email,
         password: hashedPassword,
         isAdmin:true,
